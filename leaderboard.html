@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save the Groundwater</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('assets/backgr.webp') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            position: relative;
+            padding-top: 50px;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f8f9fa;
+            text-shadow: 0 0 5px rgba(248, 249, 250, 0.9), 
+                         0 0 10px rgba(248, 249, 250, 0.8), 
+                         0 0 20px rgba(248, 249, 250, 0.7);
+            position: absolute;
+            top: 30%;
+            text-align: center;
+            transform: translateY(-50%);
+        }
+
+        .title span {
+            display: block;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 65%;
+        }
+
+        button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .start-btn {
+            background: #00aaff;
+            color: white;
+            box-shadow: 0 0 15px #00aaff;
+        }
+
+        .leaderboard-btn {
+            background: #005fbb;
+            color: white;
+            box-shadow: 0 0 15px #005fbb;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Leaderboard Modal */
+        .leaderboard-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+
+        .leaderboard-modal h2 {
+            margin-top: 0;
+        }
+
+        .leaderboard-modal ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .leaderboard-modal ul li {
+            padding: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            padding: 10px;
+            background: #d9534f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title"><span>SAVE THE</span><span>GROUND WATER</span></h1>
+    <div class="buttons">
+        <button class="start-btn" onclick="gotoindex()">START GAME</button>
+        <button class="leaderboard-btn">LEADERBOARD</button>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div class="leaderboard-modal" id="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboard-list">
+            <li>Player 1 - 1200 pts</li>
+            <li>Player 2 - 1100 pts</li>
+            <li>Player 3 - 900 pts</li>
+        </ul>
+        <button class="close-btn">Close</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const startBtn = document.querySelector(".start-btn");
+            const leaderboardBtn = document.querySelector(".leaderboard-btn");
+            const leaderboardModal = document.getElementById("leaderboard");
+            const closeBtn = document.querySelector(".close-btn");
+
+            startBtn.addEventListener("click", () => {
+                alert("Game Starting...");
+                // window.location.href = "game.html";
+            });
+
+            leaderboardBtn.addEventListener("click", () => {
+                leaderboardModal.style.display = "block";
+            });
+
+            closeBtn.addEventListener("click", () => {
+                leaderboardModal.style.display = "none";
+            });
+        });
+        function gotoindex(){
+            window.location.href='index.html'
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drought Scenario Map</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        canvas {
+            background-color: white;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mapCanvas" width="500" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById("mapCanvas");
+        const ctx = canvas.getContext("2d");
+        const nodes = [];
+        const numNodes = 10;
+        
+        function getRandomPosition() {
+            return {
+                x: Math.random() * (canvas.width - 50) + 25,
+                y: Math.random() * (canvas.height - 50) + 25
+            };
+        }
+        
+        function createNodes() {
+            for (let i = 0; i < numNodes; i++) {
+                nodes.push({ ...getRandomPosition(), water: Math.random() > 0.5 });
+            }
+        }
+        
+        function drawNodes() {
+            nodes.forEach(node => {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 10, 0, Math.PI * 2);
+                ctx.fillStyle = node.water ? "blue" : "gray";
+                ctx.fill();
+                ctx.stroke();
+            });
+        }
+        
+        function drawConnections() {
+            ctx.strokeStyle = "black";
+            nodes.forEach((node, index) => {
+                let target = nodes[(index + 1) % numNodes];
+                ctx.beginPath();
+                ctx.moveTo(node.x, node.y);
+                ctx.lineTo(target.x, target.y);
+                ctx.stroke();
+            });
+        }
+        
+        function init() {
+            createNodes();
+            drawConnections();
+            drawNodes();
+        }
+        
+        init();
+    </script>
+</body>
+</html>

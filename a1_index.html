@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loader Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .loader {
+            display: flex;
+            font-size: 2em;
+        }
+        .word {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            margin: 0 5px;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .word:nth-child(1) { animation-delay: 0s; }
+        .word:nth-child(2) { animation-delay: 0.5s; }
+        .word:nth-child(3) { animation-delay: 1s; }
+        .word:nth-child(4) { animation-delay: 1.5s; }
+        .word:nth-child(5) { animation-delay: 2s; }
+        .credit {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="word">Save</div>
+        <div class="word">The</div>
+        <div class="word">Ground</div>
+        <div class="word">Water</div>
+        <div class="word">Game</div>
+    </div>
+    <div class="credit">Presented by Warrior Force</div>
+
+    <script>
+        // 3 seconds ke baad next page par jana
+        setTimeout(function() {
+            window.location.href = 'index.html'; // Yahan 'nextpage.html' ki jagah apni next page ka naam daalein
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+</body>
+</html>

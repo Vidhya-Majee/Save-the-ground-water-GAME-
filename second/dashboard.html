@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Drought Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="game-container">
+        <h1 class="title">DASHBOARD</h1>
+        <div class="cards-container">
+            <div class="card card-1" onclick="chooseOption('rainwater')">
+                <h3>Manage Drought</h3>
+                <p>💦 Fight drought: Smart water management for survival!</p>
+                <button class="choose-btn" onclick="gotodrought()">PLAY</button>
+            </div>
+            <div class="card card-2" onclick="chooseOption('extract_groundwater')">
+                <h3>Rainwater Harvesting</h3>
+                <p>🌧️ Collect rainwater to improve water supply</p>
+                <button class="choose-btn" onclick="gotosurplus()">PLAY</button>
+            </div>
+            <div class="card card-3" onclick="chooseOption('more_groundwater')">
+                <h3>Filter Contaminated Water</h3>
+                <p>🚰 Make water clean, safe, and pure!</p>
+                <button class="choose-btn">LOCKED</button>
+            </div>
+            <div class="card card-4" onclick="chooseOption('do_nothing')">
+                <h3>Micro Irrigation</h3>
+                <p>🚜💧 Micro-irrigation: Precision watering for maximum yield!</p>
+                <button class="choose-btn">PLAY</button>
+            </div>
+            
+            
+            
+            
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

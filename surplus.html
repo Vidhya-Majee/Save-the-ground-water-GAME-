@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Management Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('assets/surplus.webp');
+            background-size: cover;
+            object-fit: cover;
+            background-repeat: no-repeat;
+            background-position:center;
+            color: white;
+        }
+        .game-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .buttons button, #nextBtn, #learnMoreBtn {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .buttons button {
+            background-color: #28a745;
+            color: white;
+        }
+        .buttons button:hover {
+            background-color: #218838;
+        }
+        #nextBtn {
+            background-color: #007bff;
+            color: white;
+        }
+        #nextBtn:disabled {
+            background-color: #6c757d;
+        }
+        #learnMoreBtn {
+            background-color: #ff9800;
+            color: white;
+            display: none;
+        }
+        #learnMoreBtn:hover {
+            background-color: #e68900;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h2>Water Management Quiz</h2>
+        <p class="question" id="question">Loading...</p>
+        <div class="buttons">
+            <button onclick="checkAnswer(0)" id="btn0">Option 1</button>
+            <button onclick="checkAnswer(1)" id="btn1">Option 2</button>
+            <button onclick="checkAnswer(2)" id="btn2">Option 3</button>
+        </div>
+        <p id="message"></p>
+        <p id="explanation"></p>
+        <p>Score: <span id="score">0</span></p>
+        <button onclick="nextQuestion()" id="nextBtn" disabled>Next Question</button>
+        <button id="learnMoreBtn" onclick="window.location.href=''"><a href="surplus_rainwater.html">Learn About Rainwater Harvesting</a></button>
+    </div>
+
+    <script>
+        let score = 0;
+        let currentQuestionIndex = 0;
+        const questions = [
+            { 
+                question: "What is the best way to conserve water?", 
+                options: ["Leave taps running", "Use rainwater harvesting", "Waste water unnecessarily"], 
+                correct: 1,
+                explanation: "Rainwater harvesting helps store water for future use and reduces wastage."
+            },
+            { 
+                question: "Which method helps reduce drought effects?", 
+                options: ["Deforestation", "Overuse of groundwater", "Planting more trees"], 
+                correct: 2,
+                explanation: "Planting trees helps maintain soil moisture and prevent desertification."
+            },
+            { 
+                question: "What should be done during a drought?", 
+                options: ["Store and use water wisely", "Ignore water shortage", "Use water irresponsibly"], 
+                correct: 0,
+                explanation: "Managing water efficiently ensures availability during prolonged dry periods."
+            },
+            { 
+                question: "What is a major problem caused by surplus rain?", 
+                options: ["Flooding", "More drinking water", "Better agriculture"], 
+                correct: 0,
+                explanation: "Excessive rainfall can cause flooding, which damages infrastructure and displaces people."
+            },
+            { 
+                question: "Which method can help store surplus rainwater?", 
+                options: ["Let it flow away", "Rainwater harvesting", "Burn it off"], 
+                correct: 1,
+                explanation: "Rainwater harvesting helps in storing excess water for future use."
+            },
+            { 
+                question: "How can we use surplus rainwater effectively?", 
+                options: ["Dump it in the ocean", "Store it in tanks and reservoirs", "Let it evaporate"], 
+                correct: 1,
+                explanation: "Storing rainwater in tanks and reservoirs helps in water conservation."
+            }
+        ];
+
+        function loadQuestion() {
+            document.getElementById("question").textContent = questions[currentQuestionIndex].question;
+            const buttons = document.querySelectorAll(".buttons button");
+            questions[currentQuestionIndex].options.forEach((option, index) => {
+                buttons[index].textContent = option;
+                buttons[index].disabled = false;
+            });
+            document.getElementById("nextBtn").disabled = true;
+            document.getElementById("message").textContent = "";
+            document.getElementById("explanation").textContent = "";
+        }
+
+        function checkAnswer(selected) {
+            const buttons = document.querySelectorAll(".buttons button");
+            buttons.forEach(btn => btn.disabled = true);
+            if (selected === questions[currentQuestionIndex].correct) {
+                score += 10;
+                document.getElementById("message").textContent = "Correct! +10 points";
+            } else {
+                score -= 5;
+                document.getElementById("message").textContent = "Wrong! -5 points";
+            }
+            document.getElementById("explanation").textContent = "Correct Answer: " + questions[currentQuestionIndex].options[questions[currentQuestionIndex].correct] + " - " + questions[currentQuestionIndex].explanation;
+            document.getElementById("score").textContent = score;
+            document.getElementById("nextBtn").disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("message").textContent = "Quiz Over! Final Score: " + score;
+                document.querySelectorAll("button").forEach(btn => btn.disabled = true);
+                document.getElementById("learnMoreBtn").style.display = "inline-block";
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
